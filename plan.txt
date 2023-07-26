@@ -1,0 +1,38 @@
+[.] Create directories
+    - public (compiled files will be stored in this folder)
+        - img
+        - css
+            - app.css
+        - js
+            - app.js
+    - app
+        - http
+            - controllers
+            - middleware
+        - config
+        - models
+    - resources (for uncompiled files)
+        -js
+            - app.js
+        -scss 
+            - app.scss
+        - views (html)
+    - routes
+        - api.js
+        - web.js
+[.] Create a npm project and install all dependencies
+    -Dependencies
+        - express
+        - ejs express-ejs-layouts
+    -Dev dependencies
+        - nodemon
+[.] Create Express server -create server.js
+[.] Create home page using html and css
+    - include tailwind css
+[.] Create Cart page    
+    - order summary section
+    - empty cart section
+[.] Create order controller and link it in server.js
+[.] Create order vir=ew with table for customer and admin
+[.] Create order single page with status
+[.] Create login page with route
