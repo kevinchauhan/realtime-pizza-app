@@ -27,6 +27,10 @@
     -Dev dependencies
         - nodemon
 [.] Create Express server -create server.js
+[.] Git setup and commit
+[.] install Laravel Mix (it is used to compile js and css)
+    - setup js and scss
+[.] install tailwindcss
 [.] Create home page using html and css
     - include tailwind css
 [.] Create Cart page    
