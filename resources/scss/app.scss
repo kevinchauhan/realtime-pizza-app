@@ -1,5 +1,30 @@
-$primary: red;
+@import './variables';
 
-// body{
-//     background-color: $primary;
-// }
+body{
+    font-family: 'Lato', sans-serif;
+    color: $dark;
+}
+
+nav li:last-child a{
+    background-color: $primary;
+    &:hover{
+        background-color: $primary-hover;
+    }
+}
+
+nav li a{
+    &:hover{
+        color: $primary;
+    }
+    transition: $smooth;
+}
+
+.add-to-cart{
+    color: $primary;
+    border: 2px solid $primary;
+    transition: $smooth;
+    &:hover{
+        background-color: $primary;
+        color:$pure;
+    }
+}

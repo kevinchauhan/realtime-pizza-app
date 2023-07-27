@@ -1,4 +1,4 @@
-[.] Create directories
+[+] Create directories
     - public (compiled files will be stored in this folder)
         - img
         - css
@@ -20,17 +20,17 @@
     - routes
         - api.js
         - web.js
-[.] Create a npm project and install all dependencies
+[+] Create a npm project and install all dependencies
     -Dependencies
         - express
         - ejs express-ejs-layouts
     -Dev dependencies
         - nodemon
-[.] Create Express server -create server.js
-[.] Git setup and commit
-[.] install Laravel Mix (it is used to compile js and css)
+[+] Create Express server -create server.js
+[+] Git setup and commit
+[+] install Laravel Mix (it is used to compile js and css)
     - setup js and scss
-[.] install tailwindcss
+[+] install tailwindcss
 [.] Create home page using html and css
     - include tailwind css
 [.] Create Cart page    
