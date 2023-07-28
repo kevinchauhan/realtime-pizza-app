@@ -7,7 +7,12 @@
   \*****************************/
 /***/ (() => {
 
-
+var addToCart = document.querySelectorAll('.add-to-cart');
+addToCart.forEach(function (addBtn) {
+  addBtn.addEventListener('click', function (e) {
+    console.log(addBtn.dataset.pizza);
+  });
+});
 
 /***/ }),
 
