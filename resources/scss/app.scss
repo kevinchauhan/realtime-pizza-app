@@ -4,7 +4,13 @@ body{
     font-family: 'Lato', sans-serif;
     color: $dark;
 }
-
+.text-primary{
+    color: $primary;
+    transition: $smooth;
+}
+.text-primary-hover:hover{
+    color: $primary-hover;
+}
 nav li:last-child a{
     background-color: $primary;
     &:hover{
@@ -26,5 +32,24 @@ nav li a{
     &:hover{
         background-color: $primary;
         color:$pure;
+    }
+}
+
+.btn-primary{
+    background-color: $primary !important;
+    transition: $smooth;
+    &:hover{
+        background-color: $primary-hover !important;
+    }
+}
+
+section.cart{
+    background-color: $secondary;
+}
+
+.order-remove{
+    transition: $smooth;
+    &:hover{
+        color: $primary;
     }
 }

@@ -3,6 +3,15 @@ body {
   color: #232323;
 }
 
+.text-primary {
+  color: #fe5f1e;
+  transition: all 0.3s ease-in-out;
+}
+
+.text-primary-hover:hover {
+  color: #b23301;
+}
+
 nav li:last-child a {
   background-color: #fe5f1e;
 }
@@ -25,4 +34,23 @@ nav li a:hover {
 .add-to-cart:hover {
   background-color: #fe5f1e;
   color: #fff;
+}
+
+.btn-primary {
+  background-color: #fe5f1e !important;
+  transition: all 0.3s ease-in-out;
+}
+.btn-primary:hover {
+  background-color: #b23301 !important;
+}
+
+section.cart {
+  background-color: #f8f8f8;
+}
+
+.order-remove {
+  transition: all 0.3s ease-in-out;
+}
+.order-remove:hover {
+  color: #fe5f1e;
 }
