@@ -51,6 +51,13 @@ app.use(flash())
 
 // Assets
 app.use(express.static('public'))
+app.use(express.json())  // to parse the req body
+
+// global middleware - it is used to get session variable into ejs file
+app.use((req,res,next)=>{
+    res.locals.session = req.session
+    next()
+})
 
 // set template engine (its should be placed before routes)
 app.use(expressLayout)

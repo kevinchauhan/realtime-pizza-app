@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,28 +12,36 @@
     <!-- css -->
     <link rel="stylesheet" href="/css/app.css">
 </head>
+
 <body>
     <!-- header start -->
-    <nav class="container py-2 mx-auto flex items-center justify-between">
-        <div>
-            <a href="/">
-                <img src="./img/logo.png" alt="logo">
-            </a>
-        </div>
-        <div>
-            <ul class="flex items-center justify-between gap-3">
-                <li><a href="#">Menu</a></li>
-                <li><a href="#">Offers</a></li>
-                <li><a href="/register">Register</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/cart" class="inline-block py-1 px-2 rounded-full"><img src="./img/cart.png" alt=""></a></li>
-            </ul>
+    <nav class=" py-2 sticky top-0 bg-white shadow">
+        <div class="container mx-auto flex items-center justify-between">
+            <div>
+                <a href="/">
+                    <img src="./img/logo.png" alt="logo">
+                </a>
+            </div>
+            <div>
+                <ul class="flex items-center justify-between gap-3">
+                    <li><a href="#">Menu</a></li>
+                    <li><a href="#">Offers</a></li>
+                    <li><a href="/register">Register</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/cart" class="inline-block flex items-center py-1 px-2 rounded-full">
+                            <span id="cart-counter" class="text-white font-bold pr-2">
+                                <%= session.cart? session.cart.totalQty : 0%>
+                            </span>
+                            <img src="./img/cart.png" alt=""></a></li>
+                </ul>
+            </div>
         </div>
     </nav>
     <!-- header end -->
 
     <%- body%>
 
-    <script src="/js/app.js"></script>
+        <script src="/js/app.js"></script>
 </body>
+
 </html>

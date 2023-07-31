@@ -60,7 +60,7 @@
                 - dependencies
                     - mongoose, express-session, connect-mongo, dotenv
     - axios to send ajax request
-    - install notification library npm i noty  https://ned.im/noty/#//
+    - install notification library npm i noty  https://ned.im/noty/#// it is deprecated so use alternatives
 [.] Create order controller and link it in server.js
 [.] Create order vir=ew with table for customer and admin
 [.] Create order single page with status
