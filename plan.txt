@@ -63,11 +63,11 @@
     -[-] install notification library npm i noty  https://ned.im/noty/#//  -it is deprecated so use alternatives
 [+] Create login page with route
 [+] Create register page with route
-[.] Build register crud
+[+] Build register crud
     - dependencies
-        - express=flash, express-session, cookie-parser, dotenv
+        - express=flash, express-session, cookie-parser, dotenv, bcrypt(it is used to hash password)
         - status code article
-[.] Build login using passport
+[+] Build login using passport
     - install dependencies  
         - passport passport-local express-session
 [.] Create order controller and link it in server.js

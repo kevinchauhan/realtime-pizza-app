@@ -26,8 +26,17 @@
                 <ul class="flex items-center justify-between gap-3">
                     <li><a href="#">Menu</a></li>
                     <li><a href="#">Offers</a></li>
+                    <% if(user){ %>
+                        <li>
+                            <form id="logout" action="/logout" method="post">
+                                <a onclick="document.getElementById('logout').submit()" href="#">Logout</a>
+                                <!-- <button type="submit">Logout</button> -->
+                            </form>
+                        </li>
+                        <% } else{ %> 
                     <li><a href="/register">Register</a></li>
                     <li><a href="/login">Login</a></li>
+                    <% } %>
                     <li><a href="/cart" class="inline-block flex items-center py-1 px-2 rounded-full">
                             <span id="cart-counter" class="text-white font-bold pr-2">
                                 <%= session.cart? session.cart.totalQty : 0%>

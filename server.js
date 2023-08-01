@@ -9,6 +9,7 @@ const mongoose = require('mongoose')
 const session = require('express-session')
 const flash = require('express-flash')
 const MongoStore = require('connect-mongo')
+const passport = require('passport')
 
 // Database connection
 const url = 'mongodb://127.0.0.1/pizza';
@@ -27,14 +28,14 @@ connection.once('open', () => {
     console.log('Database connected...');
 });
 
-// middlewares ------------------------------> 
+// middlewares ------------------------------>
 
 // session store in db
 const mongoStoreInstance = new MongoStore({
     mongoUrl: 'mongodb://127.0.0.1/pizza',
     mongooseConnection: connection,
     collectionName: 'sessions',
-  });
+});
 
 // Session config
 app.use(session({
@@ -46,16 +47,25 @@ app.use(session({
     // cookie: { maxAge: 1000 * 15 } //cookie valid till 15s to check it is deleing or not in db
 }))
 
+// Passport config (it should be after session config)
+const passportInit = require('./app/config/passport')
+passportInit(passport)
+app.use(passport.initialize())
+app.use(passport.session())
+
+
 // cookie
 app.use(flash())
 
 // Assets
 app.use(express.static('public'))
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json())  // to parse the req body
 
 // global middleware - it is used to get session variable into ejs file
-app.use((req,res,next)=>{
+app.use((req, res, next) => {
     res.locals.session = req.session
+    res.locals.user = req.user
     next()
 })
 
