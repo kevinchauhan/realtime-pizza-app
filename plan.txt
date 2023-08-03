@@ -70,13 +70,13 @@
 [+] Build login using passport
     - install dependencies  
         - passport passport-local express-session
-[.] Create order controller and link it in server.js
+[+] Create order controller and link it in server.js
 [.] Create order view with table for customer and admin
 [.] Create order single page with status
-[.] Place orders functionality
-[.] Show all my orders on customer order page
+[+] Place orders functionality
+[+] Show all my orders on customer order page
 [.] Order tracker
-    - dependencies moment
+    - dependencies moment('for formatting date & time')
 [.] Socket connection  
     - dependencies socket.io
 [.] Build project for deployment

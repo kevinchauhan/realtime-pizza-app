@@ -27,6 +27,12 @@ addToCart.forEach(function (addBtn) {
     updateCart(pizza);
   });
 });
+var alertMsg = document.querySelector('#success-alert');
+if (alertMsg) {
+  setTimeout(function () {
+    alertMsg.style.display = 'none';
+  }, 2000);
+}
 
 /***/ }),
 
