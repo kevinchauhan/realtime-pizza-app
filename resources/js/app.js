@@ -1,4 +1,5 @@
 import axios from "axios"  // production level library used for server requests
+import initAdmin from "./admin"
 
 let addToCart = document.querySelectorAll('.add-to-cart')
 let cartCounter = document.querySelector('#cart-counter')
@@ -22,3 +23,7 @@ if(alertMsg){
         alertMsg.style.display = 'none' 
     },2000)
 }
+
+console.log(initAdmin)
+// admin
+initAdmin()

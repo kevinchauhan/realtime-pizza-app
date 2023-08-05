@@ -71,10 +71,11 @@
     - install dependencies  
         - passport passport-local express-session
 [+] Create order controller and link it in server.js
-[.] Create order view with table for customer and admin
-[.] Create order single page with status
+[+] Create order view with table for customer and admin
 [+] Place orders functionality
 [+] Show all my orders on customer order page
+[+] Show all orders on admin page
+[.] Create order single page with status
 [.] Order tracker
     - dependencies moment('for formatting date & time')
 [.] Socket connection  

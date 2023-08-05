@@ -24,7 +24,7 @@
                             <td class="border px-3 py-2"><a href="/" class="link"><%= order._id%></a></td>
                             <td class="border px-3 py-2"><%= order.phone%></td>
                             <td class="border px-3 py-2"><%= order.address%></td>
-                            <td class="border px-3 py-2"><%= moment(order.createdAt).format('hh:mm A') %></td>
+                            <td class="border px-3 py-2"><%= moment(order.createdAt).format('MMM do, hh:mm A') %></td>
                         </tr>
                         <% }) %>
                             <% } else { %>
