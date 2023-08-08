@@ -153,6 +153,12 @@ section.status {
 .status-box ul li.step-completed span {
     color: $gray;
 }
+.status-box ul li.completed span {
+    &::after{
+        background-color: green;
+    }
+    color: green;
+}
 
 // Current status
 .status-box ul li.current span {

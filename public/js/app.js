@@ -51,15 +51,18 @@ module.exports = initAdmin;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/lib/axios.js");
 /* harmony import */ var _admin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./admin */ "./resources/js/admin.js");
 /* harmony import */ var _admin__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_admin__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
  // production level library used for server requests
+
 
 var addToCart = document.querySelectorAll('.add-to-cart');
 var cartCounter = document.querySelector('#cart-counter');
 function updateCart(pizza) {
-  axios__WEBPACK_IMPORTED_MODULE_1__["default"].post('/update-cart', pizza).then(function (res) {
+  axios__WEBPACK_IMPORTED_MODULE_2__["default"].post('/update-cart', pizza).then(function (res) {
     return cartCounter.innerText = res.data.totalQty;
   })["catch"](function (err) {
     return console.log(err);
@@ -77,9 +80,36 @@ if (alertMsg) {
     alertMsg.style.display = 'none';
   }, 2000);
 }
-console.log((_admin__WEBPACK_IMPORTED_MODULE_0___default()));
-// admin
+
+// admin 
 _admin__WEBPACK_IMPORTED_MODULE_0___default()();
+
+// single-order-status-page ---------------------------------------------->
+var statuses = document.querySelectorAll('.status_line');
+var inputOrder = JSON.parse(document.querySelector('#hiddenInput').value);
+
+// update status
+function updateStatus(order) {
+  var stepCompleted = true;
+  var small = document.createElement('small');
+  statuses.forEach(function (status) {
+    if (stepCompleted) {
+      status.classList.add('step-completed');
+      small.innerHTML = moment__WEBPACK_IMPORTED_MODULE_1___default()(order.updatedAt).format('hh:mm A');
+      status.appendChild(small);
+    }
+    if (status.dataset.status === order.status) {
+      stepCompleted = false;
+      if (status.nextElementSibling) {
+        status.nextElementSibling.classList.add('current');
+      }
+      if (order.status === 'completed') {
+        status.classList.add('completed');
+      }
+    }
+  });
+}
+updateStatus(inputOrder);
 
 /***/ }),
 
