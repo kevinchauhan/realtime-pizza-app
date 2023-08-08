@@ -29,16 +29,35 @@ function orderController() {
             })
         },
 
-        // customer orrder page
+        // customer order page
         async index(req, res) {
             const orders = await Order.find({ customerId: req.user._id },
                 null,
                 { sort: { 'createdAt': -1 } })
-            
+
             // to remove order success alert on back and forward button 
             res.header('Cache-Control', 'no-cache,private,no-this.store,must-revalidate,max-stale=0,post-cehck=0,precheck=0')
 
             res.render('customer/orders', { orders, moment: moment })
+        },
+
+        // single order page
+        async show(req, res) {
+            try {
+                // fetching order from db
+                const order = await Order.findById(req.params.id)
+                
+                // Authenticate(same customer or not)
+                if (req.user.id.toString() === order.customerId.toString()) {
+                    // single order status page for matched item
+                    return res.render('customer/singleOrder', { order })
+                }
+
+                return res.redirect('/') // 404 error
+
+            } catch (err) {
+                return res.redirect('/') // 404 error
+            }
         }
     }
 }
