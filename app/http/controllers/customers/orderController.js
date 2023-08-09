@@ -21,6 +21,12 @@ function orderController() {
             order.save().then(result => {
                 req.flash('success', 'Order placed successfully')
                 delete req.session.cart
+                // emit event
+                Order.populate(result, { path: 'customerId' }).then((placedOrder) => {
+                    const eventEmitter = req.app.get('eventEmitter')
+                    eventEmitter.emit('orderPlaced', placedOrder)
+                }).catch(err=>console.log(err))
+
                 res.redirect('/customer/orders')
             }).catch(err => {
                 console.log(err)
@@ -46,7 +52,7 @@ function orderController() {
             try {
                 // fetching order from db
                 const order = await Order.findById(req.params.id)
-                
+
                 // Authenticate(same customer or not)
                 if (req.user.id.toString() === order.customerId.toString()) {
                     // single order status page for matched item

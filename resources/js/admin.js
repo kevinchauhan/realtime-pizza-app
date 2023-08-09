@@ -1,8 +1,10 @@
 const { default: axios } = require("axios")
 const moment = require('moment')
 
-function initAdmin() {
+export function initAdmin(socket) {
     const orderTable = document.querySelector('#order-table')
+    let orders = []
+    let markup
 
     axios.get('/admin/orders', {
         headers: {
@@ -13,20 +15,20 @@ function initAdmin() {
         markup = generateMarkup(orders)
         orderTable.innerHTML = markup
     }).catch(err => console.log(err))
-}
 
-// getting items data for generate markup
-function renderItems(items){
-    let parsedItems = Object.values(items)
-    return parsedItems.map((menuItems)=>{
-        return `<p>${menuItems.item.name} - ${menuItems.qty}</p>`
-    }).join('')
-}
 
-// html markup for order details
-function generateMarkup(orders) {
-    return orders.map(order => {
-        return `
+    // getting items data for generate markup
+    function renderItems(items) {
+        let parsedItems = Object.values(items)
+        return parsedItems.map((menuItems) => {
+            return `<p>${menuItems.item.name} - ${menuItems.qty}</p>`
+        }).join('')
+    }
+
+    // html markup for order details
+    function generateMarkup(orders) {
+        return orders.map(order => {
+            return `
         <tr>
             <td class="border px-4 py-2 text-green-900">
                 <p>${order._id}</p>
@@ -73,7 +75,16 @@ function generateMarkup(orders) {
             </td>
         </tr>
     `
-    }).join('')
-}
+        }).join('')
 
-module.exports = initAdmin
+    }
+
+    // socket
+    socket.on('orderPlaced', (data) => {
+        console.log(data)
+      orders.unshift(data)
+      orderTable.innerHTML = ''
+      orderTable.innerHTML = generateMarkup(orders)
+    })
+}
+// module.exports = initAdmin

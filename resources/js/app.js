@@ -1,5 +1,5 @@
 import axios from "axios"  // production level library used for server requests
-import initAdmin from "./admin"
+import { initAdmin } from "./admin"
 import moment from "moment"
 
 let addToCart = document.querySelectorAll('.add-to-cart')
@@ -25,38 +25,71 @@ if (alertMsg) {
     }, 2000)
 }
 
-// admin 
-initAdmin()
-
-
 // single-order-status-page ---------------------------------------------->
 const statuses = document.querySelectorAll('.status_line')
-const inputOrder = JSON.parse(document.querySelector('#hiddenInput').value)
+const inputOrder = document.querySelector('#hiddenInput')
+
+const small = document.createElement('small')
 
 // update status
 function updateStatus(order) {
     let stepCompleted = true
-    const small = document.createElement('small')
+
+    // clear old classes
+    statuses.forEach((status) => {
+        status.classList.remove('step-completed')
+        status.classList.remove('current')
+    })
 
     statuses.forEach(status => {
         if (stepCompleted) {
             status.classList.add('step-completed')
-            small.innerHTML = moment(order.updatedAt).format('hh:mm A')
-            status.appendChild(small)
         }
 
         if (status.dataset.status === order.status) {
             stepCompleted = false
+            small.innerText = moment(order.updatedAt).format('hh:mm A')
+            status.appendChild(small)
 
             if (status.nextElementSibling) {
                 status.nextElementSibling.classList.add('current')
             }
-            if (order.status === 'completed'){
+
+            if (order.status === 'completed') {
                 status.classList.add('completed')
             }
         }
     })
 
 }
+let order
+if (inputOrder) {
+    order = JSON.parse(inputOrder.value)
+    updateStatus(order)
+}
 
-updateStatus(inputOrder)
+
+// Socket
+let socket = io()
+
+// customer join
+if (order) {
+    socket.emit('join', `order_${order._id}`)
+}
+// admin join
+let adminAreaPath = window.location.pathname
+if (adminAreaPath.includes('admin')) {
+    // admin 
+    initAdmin(socket)
+
+    socket.emit('join', 'adminRoom')
+}
+
+// listening event from socket
+socket.on('orderUpdated', (data) => {
+    const updatedOrder = { ...inputOrder }
+    updatedOrder.updatedAt = moment().format()
+    updatedOrder.status = data.status
+
+    updateStatus(updatedOrder)
+})

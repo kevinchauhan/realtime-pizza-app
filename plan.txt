@@ -76,10 +76,10 @@
 [+] Show all my orders on customer order page
 [+] Show all orders on admin page
 [+] Change order status
-[.] Create order single page with status
-[.] Order tracker
+[+] Create order single page with status
+[+] Order tracker
     - dependencies moment('for formatting date & time')
-[.] Socket connection  
+[+] Socket connection  
     - dependencies socket.io
 [.] Build project for deployment
 [.] Deploy project on live server
