@@ -174,3 +174,10 @@ section.status {
     font-size: 14px;
     margin-top: 8px;
 }
+
+.bg-primary{
+    background-color: $primary;
+    & a:hover{
+        background-color: $primary-hover;
+    }
+}

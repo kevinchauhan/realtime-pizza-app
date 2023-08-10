@@ -13,8 +13,8 @@ const passport = require('passport')
 const Emitter = require('events')
 
 // Database connection
-const url = 'mongodb://127.0.0.1/pizza';
-mongoose.connect(url, {
+// const url = 'mongodb://127.0.0.1/pizza'; // now shifted to .env file
+mongoose.connect(process.env.MONGO_CONNECTION_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     serverSelectionTimeoutMS: 5000
@@ -84,6 +84,9 @@ app.set('view engine', 'ejs')
 // routes
 const routes = require('./routes/web')
 routes(app)
+app.use((req,res)=>{
+    res.status(404).render('error/404')
+})
 
 // listening server
 const server = app.listen(PORT, () => {
